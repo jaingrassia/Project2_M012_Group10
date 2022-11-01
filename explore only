@@ -1,1 +1,15 @@
-
+def explore_only():
+    avg = [10, 15, 12]
+    sd = [8, 6, 5]
+    for i in range(100):
+        max_val = avg[0]
+        max_val += random.normalvariate(avg[0], sd[0])
+        print(max_val)
+    for i in range(100):
+        max_val = avg[1]
+        max_val += random.normalvariate(avg[1], sd[1])
+        print(max_val)
+    for i in range(100):
+        max_val = avg[2]
+        max_val += random.normalvariate(avg[2], sd[2])
+        print(max_val)
