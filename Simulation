@@ -1,1 +1,29 @@
+def simulation(t, e=10):
+    max_hap = 4500 # The highest happiness vaule is 15 x the number of days we go 15x300
+    total_hap1 = 0
+    total_hap2 = 0
+    total_hap3 = 0
+    for hap in range(0, t): # This runs through all other functions to see happiness value they generated
+        total_hap1 += exploit_only()
+        total_hap2 += explore_only()
+        total_hap3 += eGreedy(e)
+    avg_hap1 = total_hap1 / t # After the other functions are ran it generated a number that is total happiness to get the average we need to divide it by the number of trials ran
+    avg_hap2 = total_hap2 / t
+    avg_hap3 = total_hap3 / t
+    regret1 = (max_hap * t) - total_hap1 # The slides said the formula for regret was optimum happiness - the total happiness generated from each function
+    regret2 = (max_hap * t) - total_hap2
+    regret3 = (max_hap * t) - total_hap3
+    avg_regret1 = regret1 / t # We have to divide by the trails ran to get the average
+    avg_regret2 = regret2 / t
+    avg_regret3 = regret3 / t
+    expected_hap1 = 100 * avg_hap1 + 100 * avg_hap2 + 100 * avg_hap3
+    expected_hap2 = avg_hap1 + avg_hap2 + avg_hap3 + 297* avg_hap1
+    expected_hap3 = 0.88 * 300 * avg_hap1 + 0.04 * 300 * avg_hap1 + 0.04 * 300 * avg_hap2 + 0.04 * 300 * avg_hap3
+    print("The simulation was run: " + str(t) + "times")
+    print("The Optimum Happiness is: " + str(max_hap))
+    print("ExploitOnly() Average Happiness: " + str(avg_hap1) + ", Average Regret: " + str(avg_regret1) + ", Expected Total Happiness: " + str(expected_hap1) + ", Expectected Total Regret 8")
+    print("ExploreOnly() Average Happiness: " + str(avg_hap2) + ", Average Regret: " + str(avg_regret2) + ", Expected Total Happiness: " + str(expected_hap2) + ", Expectected Total Regret 800")
+    print("eGreedy() Average Happiness: " + str(avg_hap3) + ", Average Regret: " + str(avg_regret3) + ", Expected Total Happiness: " + str(expected_hap3) + ", Expectected Total Regret: " + str(4500 - expected_hap3))
+
+    print(simulation(1000))
 
